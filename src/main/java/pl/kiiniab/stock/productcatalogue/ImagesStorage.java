@@ -11,8 +11,9 @@ public class ImagesStorage {
         this.images = new HashMap<>();
     }
 
-    public void save(Image image){
+    public Object save(Image image){
         this.images.put(image.getImageId(),image);
+        return null;
     }
 
     public Optional<Image> load(String imageId) {
