@@ -3,9 +3,12 @@ package pl.kiiniab.stock;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import pl.kiiniab.stock.productcatalogue.CrudImageStorage;
-import pl.kiiniab.stock.productcatalogue.ImagesStorage;
-import pl.kiiniab.stock.productcatalogue.ProductCatalogueFacade;
+
+import pl.kiiniab.stock.productcatalogue.ImageCatalogue;
+import pl.kiiniab.stock.productcatalogue.ImageRepository;
+
+import java.math.BigDecimal;
+import java.util.Arrays;
 
 @SpringBootApplication
 public class App {
@@ -14,12 +17,24 @@ public class App {
     }
 
     @Bean
-    public ProductCatalogueFacade productCatalogueFacade(ImagesStorage imagesStorage) {
-        return new ProductCatalogueFacade();
-    }
+    public ImageCatalogue createImageCatalogue(ImageRepository imageRepository) {
+        ImageCatalogue imageCatalogue = new ImageCatalogue(imageRepository);
+        String imageId1 = imageCatalogue.addImage(
+                "Image 1 - example",
+                BigDecimal.valueOf(100.50),
+                Arrays.asList("tag1", "tag2"),
+                ""
+        );
+        imageCatalogue.publish(imageId1);
 
-    @Bean
-    public ImagesStorage imagesStorage() {
-        return new ImagesStorage();
+        String imageId2 = imageCatalogue.addImage(
+                "Image 2 - example",
+                BigDecimal.valueOf(100.50),
+                Arrays.asList("tag1", "tag2", "tag3"),
+                ""
+        );
+        imageCatalogue.publish(imageId2);
+
+        return imageCatalogue;
     }
 }

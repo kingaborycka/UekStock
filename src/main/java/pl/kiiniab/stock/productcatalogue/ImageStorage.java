@@ -1,19 +1,17 @@
 package pl.kiiniab.stock.productcatalogue;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
-public class ImagesStorage {
-    Map<String, Image> images;
+public class ImageStorage {
+    HashMap<String, Image> images;
 
-    public ImagesStorage() {
+    public ImageStorage() {
         this.images = new HashMap<>();
     }
 
-    public Object save(Image image){
+    public void save(Image image){
         this.images.put(image.getImageId(),image);
-        return null;
     }
 
     public Optional<Image> load(String imageId) {

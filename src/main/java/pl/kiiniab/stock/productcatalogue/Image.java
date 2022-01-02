@@ -1,5 +1,9 @@
 package pl.kiiniab.stock.productcatalogue;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -7,16 +11,19 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
-
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class Image {
     @Id
-    private final String imageId;
-    private final String title;
-    private final BigDecimal price;
+    private String imageId;
+    private String title;
+    private BigDecimal price;
     @Transient
-    private final List<String> keyWords;
-    private final String filePath;
+    private List<String> keyWords;
+    private String filePath;
+    private boolean published = false;
 
     public Image(UUID imageId, String title, BigDecimal price, List<String> keyWords, String filePath) {
         this.imageId = imageId.toString();
@@ -24,24 +31,11 @@ public class Image {
         this.price = price;
         this.keyWords = keyWords;
         this.filePath = filePath;
+        this.published = false;
     }
 
-    public String getImageId() {
-        return imageId;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public List<String> getKeyWords() { return keyWords; }
-
-    public String getFilePath() {
-        return filePath;
+    public void publish() {
+        this.published = true;
     }
 
 }

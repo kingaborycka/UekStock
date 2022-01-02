@@ -1,31 +1,29 @@
-package pl.kiiniab.stock;
+package pl.kiiniab.stock.productcatalogue;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import pl.kiiniab.stock.productcatalogue.Image;
-import pl.kiiniab.stock.productcatalogue.ProductCatalogue;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.UUID;
 
 @SpringBootTest
-public class JpaImageStorageTest {
+public class ImageRepositoryTest {
     @Autowired
-    ProductCatalogue productCatalogue;
+    ImageRepository imageRepository;
 
     @Test
-    void itStoreProduct() {
+    void itStoreImage() {
         UUID id = UUID.randomUUID();
-        Image product = new Image(
+        Image image = new Image(
                 id,
                 "My prod",
                 BigDecimal.ONE,
                 Arrays.asList("k1", "k2"),
                 "media.jpeg");
-        productCatalogue.save(product);
+        imageRepository.save(image);
 
-        Image loaded = productCatalogue.findById(id.toString()).get();
+        Image loaded = imageRepository.findById(id.toString()).get();
     }
 }
