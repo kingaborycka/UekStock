@@ -23,7 +23,7 @@ public class App {
                 "Image 1 - example",
                 BigDecimal.valueOf(100.50),
                 Arrays.asList("tag1", "tag2"),
-                ""
+                "filePath"
         );
         imageCatalogue.publish(imageId1);
 
@@ -31,7 +31,7 @@ public class App {
                 "Image 2 - example",
                 BigDecimal.valueOf(100.50),
                 Arrays.asList("tag1", "tag2", "tag3"),
-                ""
+                "filePath"
         );
         imageCatalogue.publish(imageId2);
 
