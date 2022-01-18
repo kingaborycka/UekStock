@@ -11,6 +11,7 @@ import pl.kiiniab.stock.sales.BasketStorage;
 import pl.kiiniab.stock.sales.ImageDetails;
 import pl.kiiniab.stock.sales.ImageDetailsProvider;
 import pl.kiiniab.stock.sales.SalesFacade;
+import pl.kiiniab.stock.sales.offerting.OfferMaker;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -55,7 +56,8 @@ public class App {
     public SalesFacade createSalesFacade(ImageDetailsProvider imageDetailsProvider) {
         return new SalesFacade(
                 new BasketStorage(),
-                imageDetailsProvider
+                imageDetailsProvider,
+                new OfferMaker(imageDetailsProvider)
         );
     }
 

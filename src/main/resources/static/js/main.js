@@ -3,6 +3,22 @@ const getImages = () => {
         .then(response => response.json())
         .catch(error => console.log(error));
 }
+const handleAddToBasket = (imageId) => {
+    const url = `/api/add-image/${imageId}`;
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    });
+}
+
+const refreshCurrentOffer = () => {
+    return fetch('/api/current-offer')
+        .then(r => r.json())
+        .then(offer => updateBasketComponent(offer))
+}
+
 const createHtmlElementFromString = (htmlAsString) => {
     let myElement = document.createElement('div');
     myElement.innerHTML = htmlAsString.trim();
@@ -33,26 +49,10 @@ const appendToImageList = (htmlList, htmlElements) => {
     return htmlElements;
 }
 
-const handleAddToBasket = (imageId) => {
-    const url = `/api/add-image/${imageId}`;
-    return fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    });
-}
-
 const updateBasketComponent = (offer) => {
     const basketEl = document.querySelector('.basket');
     basketEl.querySelector('.basket_items-count').innerText = `${offer.linesCount} Items`;
     basketEl.querySelector('.basket_total').innerText = `${offer.total} PLN`;
-}
-
-const refreshCurrentOffer = () => {
-    return fetch('/api/current-offer')
-        .then(r => r.json())
-        .then(offer => updateBasketComponent(offer))
 }
 
 const initializeAddToBasketHandler = (htmlElements) => {

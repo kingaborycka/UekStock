@@ -1,4 +1,4 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.offerting;
 
 import java.math.BigDecimal;
 import java.util.List;

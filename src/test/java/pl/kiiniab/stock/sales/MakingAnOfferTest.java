@@ -2,6 +2,9 @@ package pl.kiiniab.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.kiiniab.stock.sales.offerting.Offer;
+import pl.kiiniab.stock.sales.offerting.OfferMaker;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
@@ -48,7 +51,8 @@ public class MakingAnOfferTest {
     private SalesFacade thereIsSalesModule() {
         return new SalesFacade(
                 basketStorage,
-                imageDetailsProvider
+                imageDetailsProvider,
+                new OfferMaker(imageDetailsProvider)
         );
     }
 }

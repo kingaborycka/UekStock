@@ -2,6 +2,7 @@ package pl.kiiniab.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.kiiniab.stock.sales.offerting.OfferMaker;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -91,7 +92,8 @@ public class CollectingImagesTest {
     private SalesFacade thereIsSalesModule() {
         return new SalesFacade(
                 basketStorage,
-                imageDetailsProvider
+                imageDetailsProvider,
+                new OfferMaker(imageDetailsProvider)
         );
     }
 
