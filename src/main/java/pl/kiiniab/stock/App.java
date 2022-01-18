@@ -4,8 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import pl.kiiniab.stock.productcatalogue.Image;
 import pl.kiiniab.stock.productcatalogue.ImageCatalogue;
 import pl.kiiniab.stock.productcatalogue.ImageRepository;
+import pl.kiiniab.stock.sales.BasketStorage;
+import pl.kiiniab.stock.sales.ImageDetails;
+import pl.kiiniab.stock.sales.ImageDetailsProvider;
+import pl.kiiniab.stock.sales.SalesFacade;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -36,5 +41,24 @@ public class App {
         imageCatalogue.publish(imageId2);
 
         return imageCatalogue;
+    }
+
+    @Bean
+    public SalesFacade createSalesFacade(ImageDetailsProvider imageDetailsProvider) {
+        return new SalesFacade(
+                new BasketStorage(),
+                imageDetailsProvider
+        );
+    }
+
+    @Bean
+    public ImageDetailsProvider imageDetailsProvider(ImageCatalogue imageCatalogue ) {
+        return (id) -> {
+            Image image = imageCatalogue.getById(id);
+            return new ImageDetails(
+                    image.getImageId(),
+                    image.getPrice()
+            );
+        };
     }
 }

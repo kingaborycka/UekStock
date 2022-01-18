@@ -19,7 +19,7 @@ public class ImageCatalogue {
         return image.getImageId();
     }
 
-    public boolean isProductExists(String imageId) {
+    public boolean isImageExists(String imageId) {
         return repository.existsById(imageId);
     }
 
@@ -38,5 +38,10 @@ public class ImageCatalogue {
 
     public void empty() {
         repository.deleteAll();
+    }
+
+    public Image getById(String imageId) {
+        Image image = repository.findById(imageId).get();
+        return image;
     }
 }

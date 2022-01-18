@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <title>My uek store</title>
+    <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
-<h1>My UEK store</h1>
-<script src="/js/main.js"></script>
+    <h1>My UEK store</h1>
+    <main>
+        <div class="images_container">
+            <ul id="images" class="images_list">
+                <h3>Image Name</h3>
+                <div class="product_image">
+                    <img src="my_product_image"/>
+                </div>
+                <span class="product_price"></span>
+                <button
+                    class="image_add_to_basket"
+                    data-image-id="MyImageId"
+                    >Add to basket</button>
+            </ul>
+        </div>
+    </main>
+    <script src="/js/main.js"></script>
 </body>
 </html>
