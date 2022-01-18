@@ -40,6 +40,14 @@ public class App {
         );
         imageCatalogue.publish(imageId2);
 
+        String imageId3 = imageCatalogue.addImage(
+                "Image 3 - example",
+                BigDecimal.valueOf(11.50),
+                Arrays.asList("tag3", "tag2", "tag3"),
+                "filePath"
+        );
+        imageCatalogue.publish(imageId2);
+
         return imageCatalogue;
     }
 

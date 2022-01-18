@@ -1,0 +1,19 @@
+.products__list {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.product {
+}
+
+.product__price {
+    display: block;
+}
+
+.product__add-to-basket {
+    padding: 1rem;
+    font-size: 2rem;
+    background-color: yellow;
+}
