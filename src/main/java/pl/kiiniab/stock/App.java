@@ -7,11 +7,10 @@ import org.springframework.context.annotation.Bean;
 import pl.kiiniab.stock.productcatalogue.Image;
 import pl.kiiniab.stock.productcatalogue.ImageCatalogue;
 import pl.kiiniab.stock.productcatalogue.ImageRepository;
-import pl.kiiniab.stock.sales.BasketStorage;
-import pl.kiiniab.stock.sales.ImageDetails;
-import pl.kiiniab.stock.sales.ImageDetailsProvider;
-import pl.kiiniab.stock.sales.SalesFacade;
+import pl.kiiniab.stock.sales.*;
 import pl.kiiniab.stock.sales.offerting.OfferMaker;
+import pl.kiiniab.stock.sales.ordering.InMemoryReservationStorage;
+import pl.kiiniab.stock.sales.ordering.ReservationRepository;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -27,9 +26,9 @@ public class App {
         ImageCatalogue imageCatalogue = new ImageCatalogue(imageRepository);
         String imageId1 = imageCatalogue.addImage(
                 "Image 1 - example",
-                BigDecimal.valueOf(100.50),
+                BigDecimal.valueOf(20.50),
                 Arrays.asList("tag1", "tag2"),
-                "filePath"
+                "https://picsum.photos/300"
         );
         imageCatalogue.publish(imageId1);
 
@@ -37,7 +36,7 @@ public class App {
                 "Image 2 - example",
                 BigDecimal.valueOf(100.50),
                 Arrays.asList("tag1", "tag2", "tag3"),
-                "filePath"
+                "https://picsum.photos/200"
         );
         imageCatalogue.publish(imageId2);
 
@@ -45,9 +44,9 @@ public class App {
                 "Image 3 - example",
                 BigDecimal.valueOf(11.50),
                 Arrays.asList("tag3", "tag2", "tag3"),
-                "filePath"
+                "https://picsum.photos/350"
         );
-        imageCatalogue.publish(imageId2);
+        imageCatalogue.publish(imageId3);
 
         return imageCatalogue;
     }
@@ -57,7 +56,9 @@ public class App {
         return new SalesFacade(
                 new BasketStorage(),
                 imageDetailsProvider,
-                new OfferMaker(imageDetailsProvider)
+                new OfferMaker(imageDetailsProvider),
+                new InMemoryReservationStorage(),
+                new DummyPaymentGateway()
         );
     }
 
@@ -70,5 +71,10 @@ public class App {
                     image.getPrice()
             );
         };
+    }
+
+    @Bean
+    public JpaReservationStorage createJpaReervationStorage(ReservationRepository reservationRepository) {
+        return new JpaReservationStorage(reservationRepository);
     }
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.kiiniab.stock.sales.offerting.Offer;
 import pl.kiiniab.stock.sales.offerting.OfferMaker;
+import pl.kiiniab.stock.sales.ordering.InMemoryReservationStorage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -52,7 +53,9 @@ public class MakingAnOfferTest {
         return new SalesFacade(
                 basketStorage,
                 imageDetailsProvider,
-                new OfferMaker(imageDetailsProvider)
+                new OfferMaker(imageDetailsProvider),
+                new InMemoryReservationStorage(),
+                new DummyPaymentGateway()
         );
     }
 }

@@ -2,17 +2,28 @@ package pl.kiiniab.stock.sales;
 
 import pl.kiiniab.stock.sales.offerting.Offer;
 import pl.kiiniab.stock.sales.offerting.OfferMaker;
+import pl.kiiniab.stock.sales.ordering.InMemoryReservationStorage;
+import pl.kiiniab.stock.sales.ordering.Reservation;
+import pl.kiiniab.stock.sales.ordering.ReservationDetails;
 
 public class SalesFacade {
     private BasketStorage basketStorage;
     private ImageDetailsProvider imageDetailsProvider;
     private OfferMaker offerMaker;
+    private InMemoryReservationStorage reservationStorage;
+    private DummyPaymentGateway paymentGateway;
 
-
-    public SalesFacade(BasketStorage basketStorage, ImageDetailsProvider imageDetailsProvider, OfferMaker offerMaker) {
+    public SalesFacade(
+            BasketStorage basketStorage,
+            ImageDetailsProvider imageDetailsProvider,
+            OfferMaker offerMaker,
+            InMemoryReservationStorage reservationStorage,
+            DummyPaymentGateway paymentGateway) {
         this.basketStorage = basketStorage;
         this.imageDetailsProvider = imageDetailsProvider;
         this.offerMaker = offerMaker;
+        this.reservationStorage = reservationStorage;
+        this.paymentGateway = paymentGateway;
     }
 
     public void addToBasket(String customerId, String imageId) {
@@ -20,7 +31,6 @@ public class SalesFacade {
         ImageDetails image = imageDetailsProvider.getImageDetails(imageId);
 
         basket.add(BasketItem.of(image.getId(), image.getPrice()));
-
         basketStorage.save(customerId, basket);
     }
 
@@ -34,6 +44,18 @@ public class SalesFacade {
     }
 
     public ReservationDetails acceptOffer(String customerId, CustomerData customerData) {
-        return ReservationDetails.ofPayment("reservationId", "paymentId", "paymentUrl");
+        Basket basket = loadBasketForCustomer(customerId);
+        Offer currentOffer = offerMaker.makeAnOffer(basket);
+
+        Reservation reservation = Reservation.of(currentOffer, basket.getBasketItems(), customerData);
+        reservation.registerPayment(paymentGateway);
+
+        reservationStorage.save(reservation);
+
+        return ReservationDetails.ofPayment(
+                reservation.getId(),
+                reservation.paymentDetails().getPaymentId(),
+                reservation.paymentDetails().getPaymentUrl()
+        );
     }
 }

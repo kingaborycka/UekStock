@@ -15,12 +15,12 @@ const createImageHtmlComponent = (image) => {
         <li class="image">
             <h3>${image.title}</h3>
             <div class="image_image-container">
-                <img src="${image.mediaPath}"/>
+                <img src="${image.filePath}"/>
             </div>
             <span class="image_price">${image.price}</span>
             <button
                 class="image_add-to-basket"
-                data-image-id="${image.id}"
+                data-image-id="${image.imageId}"
             >
                 Add to basket
             </button>
@@ -41,13 +41,13 @@ const refreshCurrentOffer = () => {
     fetch('/api/current-offer')
         .then(r => r.json())
         .then(offer => {
-            basketEl.querySelector('.basket__total').innerText = `${offer.total} PLN`;
-            basketEl.querySelector('.basket__items-count').innerText = `${offer.linesCount} Items`;
+            basketEl.querySelector('.basket_total').innerText = `${offer.total} PLN`;
+            basketEl.querySelector('.basket_items-count').innerText = `${offer.linesCount} Items`;
         })
 }
 
 const initializeAddToBasketHandler = (imageHtmlEl) => {
-    const addToBasketBtn = imageHtmlEl.querySelector('.image__add-to-basket');
+    const addToBasketBtn = imageHtmlEl.querySelector('.image_add-to-basket');
 
     addToBasketBtn.addEventListener('click', (event) => {
         const imageId = event.target.getAttribute('data-image-id');
@@ -71,10 +71,10 @@ const initializeAddToBasketHandling = (imagesAsHtmlEl) => {
 
 const handleCheckout = () => {
     console.log('lets do some checkout steps');
+    refreshCurrentOffer();
 }
 
 (() => {
-    console.log("It works :)");
     const imagesList = document.getElementById('images');
     getImages()
         .then(imagesAsObjects => imagesAsObjects.map(createImageHtmlComponent))
@@ -85,6 +85,7 @@ const handleCheckout = () => {
 
     refreshCurrentOffer();
 
-    const checkoutBtn = document.querySelector('.basket__checkout');
+    const checkoutBtn = document.querySelector('.basket_checkout');
     checkoutBtn.addEventListener('click', handleCheckout);
+    console.log("It works :)");
 })();

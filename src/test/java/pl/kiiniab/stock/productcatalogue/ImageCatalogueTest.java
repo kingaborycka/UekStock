@@ -32,14 +32,14 @@ class ImageCatalogueTest {
     }
 
     @Test
-    void itLoadsProductsViaEndpoint() {
+    void itLoadsImagesViaEndpoint() {
         // given
         thereIsDraftImage("example 0");
         thereIsImage("example 1");
         thereIsImage("example 2");
 
         // when
-        ResponseEntity<Image[]> response = callApiForProducts();
+        ResponseEntity<Image[]> response = callApiForImages();
         Image[] images = response.getBody();
 
         // Then
@@ -67,7 +67,7 @@ class ImageCatalogueTest {
         );
     }
 
-    private ResponseEntity<Image[]> callApiForProducts() {
+    private ResponseEntity<Image[]> callApiForImages() {
         String url = String.format(
                 "http://localhost:%s/api/images",
                 serverPort);

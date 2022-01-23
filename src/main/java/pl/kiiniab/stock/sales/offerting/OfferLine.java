@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class OfferLine {
     private final String imageId;
-    private final int quantity;
+    private int quantity;
     private final BigDecimal price;
 
     public OfferLine(String imageId, int quantity, BigDecimal price) {
@@ -16,5 +16,10 @@ public class OfferLine {
 
     public BigDecimal getTotal() {
         return price.multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public int setForFree() {
+        this.quantity = 0;
+        return quantity;
     }
 }
