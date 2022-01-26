@@ -1,4 +1,4 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.payment;
 
 import pl.kiiniab.stock.sales.ordering.CustomerDetails;
 import pl.kiiniab.stock.sales.ordering.PaymentDetails;

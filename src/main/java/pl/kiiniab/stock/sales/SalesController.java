@@ -1,10 +1,8 @@
 package pl.kiiniab.stock.sales;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.kiiniab.stock.sales.offerting.Offer;
+import pl.kiiniab.stock.sales.ordering.ReservationDetails;
 
 import javax.servlet.http.HttpSession;
 import java.util.UUID;
@@ -33,8 +31,8 @@ public class SalesController {
     }
 
     @PostMapping("/api/accept-offer")
-    public void acceptOffer(@PathVariable String imageId, CustomerData customerData) {
-        sales.acceptOffer(getCurrentCustomerId(), customerData);
+    public ReservationDetails acceptOffer(@RequestBody CustomerData customerData) {
+        return sales.acceptOffer(getCurrentCustomerId(), customerData);
     }
 
     @GetMapping("/api/current-customer-id")

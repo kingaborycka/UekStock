@@ -1,5 +1,6 @@
 package pl.kiiniab.stock.sales;
 
+import pl.kiiniab.stock.sales.payment.PaymentGateway;
 import pl.kiiniab.stock.sales.offerting.Offer;
 import pl.kiiniab.stock.sales.offerting.OfferMaker;
 import pl.kiiniab.stock.sales.ordering.InMemoryReservationStorage;
@@ -11,14 +12,14 @@ public class SalesFacade {
     private ImageDetailsProvider imageDetailsProvider;
     private OfferMaker offerMaker;
     private InMemoryReservationStorage reservationStorage;
-    private DummyPaymentGateway paymentGateway;
+    private PaymentGateway paymentGateway;
 
     public SalesFacade(
             BasketStorage basketStorage,
             ImageDetailsProvider imageDetailsProvider,
             OfferMaker offerMaker,
             InMemoryReservationStorage reservationStorage,
-            DummyPaymentGateway paymentGateway) {
+            PaymentGateway paymentGateway) {
         this.basketStorage = basketStorage;
         this.imageDetailsProvider = imageDetailsProvider;
         this.offerMaker = offerMaker;

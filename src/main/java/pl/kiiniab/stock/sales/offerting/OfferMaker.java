@@ -1,18 +1,13 @@
 package pl.kiiniab.stock.sales.offerting;
 
-import antlr.collections.impl.IntRange;
-import org.apache.commons.collections4.CollectionUtils;
 import pl.kiiniab.stock.sales.Basket;
 import pl.kiiniab.stock.sales.BasketItem;
 import pl.kiiniab.stock.sales.ImageDetailsProvider;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class OfferMaker {
     private ImageDetailsProvider imageDetailsProvider;
