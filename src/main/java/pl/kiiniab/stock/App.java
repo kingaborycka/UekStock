@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import pl.kiiniab.stock.payment.PayU;
+import pl.kiiniab.stock.sales.payment.PayUPaymentGateway;
 import pl.kiiniab.stock.productcatalogue.Image;
 import pl.kiiniab.stock.productcatalogue.ImageCatalogue;
 import pl.kiiniab.stock.productcatalogue.ImageRepository;
@@ -52,13 +54,13 @@ public class App {
     }
 
     @Bean
-    public SalesFacade createSalesFacade(ImageDetailsProvider imageDetailsProvider) {
+    public SalesFacade createSalesFacade(ImageDetailsProvider imageDetailsProvider, PayU payU) {
         return new SalesFacade(
                 new BasketStorage(),
                 imageDetailsProvider,
                 new OfferMaker(imageDetailsProvider),
                 new InMemoryReservationStorage(),
-                new DummyPaymentGateway()
+                new PayUPaymentGateway(payU)
         );
     }
 

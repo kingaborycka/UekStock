@@ -2,6 +2,7 @@ package pl.kiiniab.stock.sales;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.kiiniab.stock.sales.payment.DummyPaymentGateway;
 import pl.kiiniab.stock.sales.offerting.OfferMaker;
 import pl.kiiniab.stock.sales.ordering.InMemoryReservationStorage;
 

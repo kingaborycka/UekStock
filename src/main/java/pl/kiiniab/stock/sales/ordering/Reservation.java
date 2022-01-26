@@ -1,8 +1,8 @@
 package pl.kiiniab.stock.sales.ordering;
 
+import pl.kiiniab.stock.sales.payment.PaymentGateway;
 import pl.kiiniab.stock.sales.BasketItem;
 import pl.kiiniab.stock.sales.CustomerData;
-import pl.kiiniab.stock.sales.DummyPaymentGateway;
 import pl.kiiniab.stock.sales.offerting.Offer;
 
 import javax.persistence.*;
@@ -66,7 +66,7 @@ public class Reservation {
         return lines.size();
     }
 
-    public void registerPayment(DummyPaymentGateway paymentGateway) {
+    public void registerPayment(PaymentGateway paymentGateway) {
         paymentDetails = paymentGateway.register(id, total, customerDetails);
     }
 

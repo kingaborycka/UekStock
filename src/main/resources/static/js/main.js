@@ -74,6 +74,17 @@ const handleCheckout = () => {
     refreshCurrentOffer();
 }
 
+const showCheckout = () => {
+    const checkoutLayer = document.querySelector('.checkout_layer');
+    checkoutLayer.style.display = 'block';
+}
+
+const closeCheckout = () => {
+    console.log('close');
+    const checkoutLayer = document.querySelector('.checkout_layer');
+    checkoutLayer.style.display = 'none';
+}
+
 (() => {
     const imagesList = document.getElementById('images');
     getImages()
@@ -86,6 +97,33 @@ const handleCheckout = () => {
     refreshCurrentOffer();
 
     const checkoutBtn = document.querySelector('.basket_checkout');
-    checkoutBtn.addEventListener('click', handleCheckout);
+    checkoutBtn.addEventListener('click', showCheckout);
+
+    const closeCheckoutBtn = document.querySelector('.checkout_close');
+    closeCheckoutBtn.addEventListener('click', closeCheckout);
+
+    const checkoutForm = document.querySelector('.checkout_form');
+    checkoutForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(checkoutForm);
+        const data = {};
+
+        formData.forEach((value, key) => (data[key] = value));
+
+        fetch(checkoutForm.getAttribute('action'), {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(reservationDetails => {
+                checkoutForm.reset();
+                window.location.href = reservationDetails.paymentUrl;
+            });
+
+    });
+
     console.log("It works :)");
 })();

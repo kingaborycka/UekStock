@@ -12,3 +12,27 @@
     width: 100%;
     font-size: 2rem;
 }
+.checkout {
+    padding: 2rem;
+}
+.checkout_close {
+
+}
+.checkout_layer {
+    position: absolute;
+    width: 500px;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -10px 0px 10px 1px #aaaaaa;
+}
+
+.checkout_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout_form > input, button {
+    margin-bottom: 2rem;
+}

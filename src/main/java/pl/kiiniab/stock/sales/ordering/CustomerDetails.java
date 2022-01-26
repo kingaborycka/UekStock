@@ -1,7 +1,10 @@
 package pl.kiiniab.stock.sales.ordering;
 
+import lombok.Data;
+
 import javax.persistence.Embeddable;
 
+@Data
 @Embeddable
 public class CustomerDetails {
     String firstname;
