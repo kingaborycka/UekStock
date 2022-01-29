@@ -1,8 +1,8 @@
 package pl.kiiniab.stock.sales.ordering;
 
 import pl.kiiniab.stock.sales.payment.PaymentGateway;
-import pl.kiiniab.stock.sales.BasketItem;
-import pl.kiiniab.stock.sales.CustomerData;
+import pl.kiiniab.stock.sales.basket.BasketItem;
+import pl.kiiniab.stock.sales.dto.CustomerData;
 import pl.kiiniab.stock.sales.offerting.Offer;
 
 import javax.persistence.*;

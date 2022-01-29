@@ -25,7 +25,9 @@ public class PayUPaymentGateway implements PaymentGateway {
                 .totalAmount(getValueAsInteger(total))
                 .extOrderId(reservationId)
                 .buyer(new RegisterPaymentRequest.Buyer(customerDetails.getEmail(), customerDetails.getFirstname(), customerDetails.getLastname()))
-                .products(Collections.emptyList())
+                .products(Collections.singletonList(
+                        new RegisterPaymentRequest.Product("My service", total.intValue(), 1)
+                ))
                 .build());
 
         return new PaymentDetails(reservationId, response.getOrderId(), response.getRedirectUri());

@@ -1,8 +1,8 @@
 package pl.kiiniab.stock.sales.offerting;
 
-import pl.kiiniab.stock.sales.Basket;
-import pl.kiiniab.stock.sales.BasketItem;
-import pl.kiiniab.stock.sales.ImageDetailsProvider;
+import pl.kiiniab.stock.sales.basket.Basket;
+import pl.kiiniab.stock.sales.basket.BasketItem;
+import pl.kiiniab.stock.sales.catalog.ImageDetailsProvider;
 
 import java.math.BigDecimal;
 import java.util.List;

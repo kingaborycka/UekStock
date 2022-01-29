@@ -13,6 +13,17 @@
         <button class="basket_checkout">CHECKOUT</button>
     </div>
     <ul id="images" class="images_list"></ul>
+    <div class="checkout_layer" style="display: none">
+        <button class="checkout_close">X</button>
+        <div class="checkout">
+            <form class="checkout_form" action="/api/accept-offer" method="post">
+                <input type="email" required name="email" placeholder="john@doe.com..."/>
+                <input type="text" required name="firstname" placeholder="John..."/>
+                <input type="text" required name="lastname" placeholder="Doe..."/>
+                <button type="submit">Checkout</button>
+            </form>
+        </div>
+    </div>
     <script src="../js/main.js"></script>
 </body>
 </html>

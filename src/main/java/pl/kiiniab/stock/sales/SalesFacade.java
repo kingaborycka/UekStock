@@ -1,5 +1,11 @@
 package pl.kiiniab.stock.sales;
 
+import pl.kiiniab.stock.sales.basket.Basket;
+import pl.kiiniab.stock.sales.basket.BasketItem;
+import pl.kiiniab.stock.sales.basket.BasketStorage;
+import pl.kiiniab.stock.sales.catalog.ImageDetails;
+import pl.kiiniab.stock.sales.catalog.ImageDetailsProvider;
+import pl.kiiniab.stock.sales.dto.CustomerData;
 import pl.kiiniab.stock.sales.payment.PaymentGateway;
 import pl.kiiniab.stock.sales.offerting.Offer;
 import pl.kiiniab.stock.sales.offerting.OfferMaker;

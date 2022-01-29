@@ -1,4 +1,4 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.basket;
 import java.math.BigDecimal;
 
 public class BasketItem {
@@ -10,7 +10,7 @@ public class BasketItem {
         this.price = price;
     }
 
-    static BasketItem of(String imageId, BigDecimal price) {
+    public static BasketItem of(String imageId, BigDecimal price) {
         return new BasketItem(imageId, price);
     }
 

@@ -1,4 +1,4 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.ordering;
 
 import pl.kiiniab.stock.sales.ordering.Reservation;
 import pl.kiiniab.stock.sales.ordering.ReservationRepository;

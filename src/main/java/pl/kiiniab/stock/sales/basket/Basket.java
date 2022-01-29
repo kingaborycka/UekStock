@@ -1,4 +1,4 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.basket;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,7 @@
 package pl.kiiniab.stock.sales;
 
 import org.springframework.web.bind.annotation.*;
+import pl.kiiniab.stock.sales.dto.CustomerData;
 import pl.kiiniab.stock.sales.offerting.Offer;
 import pl.kiiniab.stock.sales.ordering.ReservationDetails;
 

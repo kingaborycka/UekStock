@@ -1,4 +1,4 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,4 +1,6 @@
-package pl.kiiniab.stock.sales;
+package pl.kiiniab.stock.sales.basket;
+
+import pl.kiiniab.stock.sales.basket.Basket;
 
 import java.util.HashMap;
 import java.util.Map;

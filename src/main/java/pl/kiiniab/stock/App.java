@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import pl.kiiniab.stock.payment.PayU;
+import pl.kiiniab.stock.sales.basket.BasketStorage;
+import pl.kiiniab.stock.sales.catalog.ImageDetails;
+import pl.kiiniab.stock.sales.catalog.ImageDetailsProvider;
+import pl.kiiniab.stock.sales.ordering.JpaReservationStorage;
 import pl.kiiniab.stock.sales.payment.PayUPaymentGateway;
 import pl.kiiniab.stock.productcatalogue.Image;
 import pl.kiiniab.stock.productcatalogue.ImageCatalogue;
